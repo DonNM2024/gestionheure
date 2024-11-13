@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="fr">-->
+	<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	      layout:decorate="template.html">
+
+	<html lang="en" xmlns:th="http://www.thymeleaf.org">	
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Enseignants</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .card {
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 20px;
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #007bff;
+        }
+        .btn-primary {
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+		h5 {
+			text-align: center;
+		}
+		
+		.container{
+			margin-top:-17px;
+		}
+		
+    </style>
+</head>
+<body>
+	   <div layout:fragment="content">
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Créer un Enseignant
+        </div>
+        <div class="card-body">
+            <!--<h5 class="mb-4"></h5>-->
+            <form th:object="${user}" th:action="@{/save}" method="post">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="nom" th:field="*{nom}" placeholder="Entrez le nom" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="prenom" class="form-label">Prénom</label>
+                    <input type="text" class="form-control" id="prenom" th:field="*{prenom}" placeholder="Entrez le prénom" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="grade" class="form-label">Grade</label>
+                    <select class="form-select" id="grade" th:field="*{grade}" required>
+                        <option value="">Choisissez le grade</option>
+                        <option value="Enseignant Permanent">Enseignant Permanent</option>
+                        <option value="Enseignant Vacataire">Enseignant Vacataire</option>
+                        <option value="Enseignant Missionnaire">Enseignant Missionnaire</option>
+                        <option value="Assistant">Assistant</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="etablissementorigine" class="form-label">Établissement d'origine</label>
+                    <input type="text" class="form-control" id="etablissementorigine" th:field="*{etablissementorigine}" placeholder="Entrez l'établissement d'origine" required>
+                </div>
+
+                <div class="d-flex justify-content-start">
+                    <button type="submit" class="btn btn-primary">Créer</button>
+                </div>
+            </form>
+        </div>
+    </div>  
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+</body>
+</html>
+
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Enseignants</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .card {
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 20px;
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #007bff;
+        }
+        .btn {
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+		
+		h5{
+			text-align:center;
+			}
+    </style>
+</head>
+<body>
+	<div th:fragment="content">
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Gestion des Enseignants
+        </div>
+        <div class="card-body">
+            <form th:action="@{/search}" method="get">
+                <div class="mb-3">
+                    <label for="nom" class="form-label"></label>
+                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez le nom à rechercher">
+                </div>
+                <button type="submit" class="btn btn-secondary">Rechercher</button>
+            </form>
+
+    
+            <div th:if="${users != null and users.size() > 0}">
+                <h6 class="mt-4">Résultats de la recherche :</h6>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" th:each="user : ${users}">
+                        <span th:text="${user.nom + ' ' + user.prenom + ' | ' + user.grade + ' | ' + user.etablissementorigine}"></span>
+                        <div>
+                            <a th:href="@{/edit/{id}(id=${user.id})}" class="btn btn-info btn-sm">Modifier</a>
+                            <a href="#" onclick="confirmDelete(event, '@{/delete/{id}(id=${user.id})}')" class="btn btn-danger btn-sm">Supprimer</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <h5 class="mt-4">Créer/Mettre à jour un Enseignant :</h5>
+            <form th:object="${user}" th:action="@{/save}" method="post">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="nom" th:field="*{nom}" placeholder="Entrez le nom" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="prenom" class="form-label">Prénom</label>
+                    <input type="text" class="form-control" id="prenom" th:field="*{prenom}" placeholder="Entrez le prénom" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="grade" class="form-label">Grade</label>
+                    <select class="form-select" id="grade" th:field="*{grade}" required>
+                        <option value="">Choisissez le grade</option>
+                        <option value="Enseignant Permanent">Enseignant Permanent</option>
+                        <option value="Enseignant Vacataire">Enseignant Vacataire</option>
+                        <option value="Enseignant Missionnaire">Enseignant Missionnaire</option>
+                        <option value="Assistant">Assistant</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="etablissementorigine" class="form-label">Établissement d'origine</label>
+                    <input type="text" class="form-control" id="etablissementorigine" th:field="*{etablissementorigine}" placeholder="Entrez l'établissement d'origine" required>
+                </div>
+
+                <div class="d-flex justify-content-start">
+                    <button type="submit" class="btn btn-primary">Créer/Mise à jour</button>
+                </div>
+            </form>
+
+            <a th:href="@{/listusers}" class="btn btn-link mt-3">Voir la Liste des Enseignants</a>
+        </div>
+    </div>  
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function confirmDelete(event, url) {
+        event.preventDefault();
+        if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
+            window.location.href = url;
+        }
+    }
+</script>
+</body>
+</html>-->
+
+
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+</head>
+<body>
+
+     Inclusion du layout avec la syntaxe complète 
+    <div th:replace="~{layout :: content}">
+
+         Contenu spécifique de la page Users 
+        <h1>Gestion des Enseignants</h1>
+
+         Formulaire de recherche 
+        <h2>Rechercher un Enseignant</h2>
+        <form>
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom"><br><br>
+            <button type="submit">Rechercher</button>
+        </form>
+
+         Formulaire de création/mise à jour 
+        <h2>Créer/Mettre à jour un Enseignant :</h2>
+        <form>
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom"><br><br>
+            <label for="grade">Grade :</label>
+            <input type="text" id="grade" name="grade"><br><br>
+            <label for="etablissement">Établissement d'origine :</label>
+            <input type="text" id="etablissement" name="etablissement"><br><br>
+            <button type="submit">Soumettre</button>
+        </form>
+
+         Lien vers la liste des enseignants 
+        <h2>Voir la Liste des Enseignants</h2>
+        <a href="/liste">Liste des Enseignants</a>
+
+    </div>
+
+</body>
+</html>
+-->
+
+
+
